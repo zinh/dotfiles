@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="default_show_menubar" mtime="1378634258" type="bool" value="false"/>
+	<entry name="silent_bell" mtime="1378634258" type="bool" value="true"/>
+	<entry name="background_darkness" mtime="1378634258" type="float" value="0.74444401264190674"/>
+	<entry name="background_type" mtime="1378634258" type="string">
+		<stringvalue>transparent</stringvalue>
+	</entry>
+	<entry name="use_theme_colors" mtime="1378634258" type="bool" value="false"/>
+	<entry name="background_color" mtime="1378634258" type="string">
+		<stringvalue>#000000000000</stringvalue>
+	</entry>
+	<entry name="use_theme_background" mtime="1378617386" type="bool" value="false"/>
+	<entry name="bold_color" mtime="1378634258" type="string">
+		<stringvalue>#20204A4A8787</stringvalue>
+	</entry>
+	<entry name="visible_name" mtime="1378634258" type="string">
+		<stringvalue>Solarized</stringvalue>
+	</entry>
+	<entry name="foreground_color" mtime="1378634258" type="string">
+		<stringvalue>#FFFFFFFFFFFF</stringvalue>
+	</entry>
+	<entry name="solarized_scheme" mtime="1378617386" type="string">
+		<stringvalue>dark</stringvalue>
+	</entry>
+	<entry name="bold_color_same_as_fg" mtime="1378634258" type="bool" value="false"/>
+	<entry name="palette" mtime="1378634258" type="string">
+		<stringvalue>#070736364242:#DCDC32322F2F:#858599990000:#B5B589890000:#26268B8BD2D2:#D3D336368282:#2A2AA1A19898:#EEEEE8E8D5D5:#00002B2B3636:#CBCB4B4B1616:#58586E6E7575:#65657B7B8383:#838394949696:#6C6C7171C4C4:#9393A1A1A1A1:#FDFDF6F6E3E3</stringvalue>
+	</entry>
+</gconf>
