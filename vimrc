@@ -3,6 +3,7 @@ syntax on
 filetype plugin indent on
 set background=dark
 colorscheme solarized
+set t_Co=256
 map <C-n> :NERDTreeFind<CR>
 map <C-Left> :tabprevious<CR>
 map <C-Left> :tabnext<CR>
