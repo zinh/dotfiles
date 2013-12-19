@@ -42,6 +42,9 @@ map <leader>c "+y
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
+" Enable/Disable line number
+nmap <leader>n :set invnumber<CR>
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
