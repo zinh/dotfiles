@@ -25,6 +25,18 @@ set incsearch
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+" Set wild menu. Demo: :spe<tab><tab>
+set wildmenu
+set wildmode=list:longest,full
+
+" Moving around viewport
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
@@ -35,7 +47,8 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>t<leader> :tabnext<cr>
+" map <leader>t<leader> :tabnext<cr>
+map <leader><tab> :tabnext<cr>
 " Set copy to system clipboard
 map <leader>c "+y
 
