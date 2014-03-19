@@ -29,9 +29,6 @@ set whichwrap+=<,>,h,l
 set wildmenu
 set wildmode=list:longest,full
 
-" set mouse mode
-set mouse=a
-
 " Moving around viewport
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -45,12 +42,6 @@ map 0 ^
 set lbr
 set tw=500
 
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <C-j> mz:m+<cr>`z
-nmap <C-k> mz:m-2<cr>`z
-vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
@@ -62,6 +53,7 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 " map <leader>t<leader> :tabnext<cr>
 map <leader><tab> :tabnext<cr>
+
 " Set copy to system clipboard
 map <leader>c "+y
 map <leader>p "+p
