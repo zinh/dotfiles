@@ -1,4 +1,14 @@
-execute pathogen#infect()
+" Begin Vundle Config
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'altercation/vim-colors-solarized'
+call vundle#end()
+" End Vundle config
+set encoding=utf-8
 syntax on
 filetype plugin indent on
 set background=dark
