@@ -6,7 +6,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
-call vundle#end()
+Plugin 'tpope/vim-fugitive'
+Plugin 'yuratomo/w3m.vim'
+Bundle 'gabrielelana/vim-markdown'
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -14,12 +16,19 @@ call vundle#end()
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " To install from command line: vim +PluginInstall +qall
 " End Vundle config
+"
+call vundle#end()
+set rtp+=~/.fzf
+map <C-p> :FZF<CR>
 set encoding=utf-8
 syntax on
 filetype plugin indent on
 set background=dark
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
-set t_Co=256
+let g:solarized_termcolors=256
+" set t_Co=256
 map <C-n> :NERDTreeFind<CR>
 map <C-Left> :tabprevious<CR>
 map <C-Left> :tabnext<CR>
@@ -109,6 +118,9 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 
+" vim markdown plugin
+let g:vim_markdown_folding_disabled=1
+
 function! HasPaste()
   if &paste
     return 'PASTE MODE '
@@ -142,3 +154,10 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+" Vim Hard mode
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" config for vim-markdown
+" disable spell-check
+let g:markdown_enable_spell_checking = 0
