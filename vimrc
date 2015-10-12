@@ -104,6 +104,9 @@ map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><r
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
+" Write with sudo
+cmap w!! %!sudo tee > /dev/null %
+
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with vimgrep, display your results in cope by doing:
