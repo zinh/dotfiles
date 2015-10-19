@@ -1,3 +1,4 @@
+" To install Vundle: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " Begin Vundle Config
 set nocompatible
 filetype off
