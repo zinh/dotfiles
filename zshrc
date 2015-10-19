@@ -1,3 +1,4 @@
+# To install oh-my-zsh: sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
