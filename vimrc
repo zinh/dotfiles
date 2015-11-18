@@ -8,7 +8,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
-Plugin 'yuratomo/w3m.vim'
+" Plugin 'yuratomo/w3m.vim'
 Bundle 'gabrielelana/vim-markdown'
 " Brief help
 " :PluginList       - lists configured plugins
@@ -25,17 +25,19 @@ set encoding=utf-8
 syntax on
 filetype plugin indent on
 set background=dark
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+" let g:solarized_visibility = "high"
+" let g:solarized_contrast = "high"
 colorscheme solarized
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 " set t_Co=256
 map <C-n> :NERDTreeFind<CR>
 map <C-Left> :tabprevious<CR>
 map <C-Left> :tabnext<CR>
 set expandtab
 set shiftwidth=2
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Old nerdtree auto-close command
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
