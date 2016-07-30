@@ -9,7 +9,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 " Plugin 'yuratomo/w3m.vim'
-Bundle 'gabrielelana/vim-markdown'
+" Plugin 'neovimhaskell/haskell-vim'
+" Bundle 'gabrielelana/vim-markdown'
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
