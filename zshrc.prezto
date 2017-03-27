@@ -1,0 +1,5 @@
+alias gst='git status'
+alias ggpush='git push origin $(git_current_branch)'
+alias ga='gia'
+alias gc!="gc --amend"
+alias gcmsg="gcm"
