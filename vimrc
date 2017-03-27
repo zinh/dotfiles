@@ -168,3 +168,6 @@ endfunction
 " config for vim-markdown
 " disable spell-check
 let g:markdown_enable_spell_checking = 0
+
+" Transparent background
+hi Normal guibg=NONE ctermbg=NONE
