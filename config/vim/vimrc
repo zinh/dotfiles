@@ -1,30 +1,19 @@
-" To install Vundle: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" Begin Vundle Config
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+call plug#end()
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-fugitive'
-" Plugin 'yuratomo/w3m.vim'
-" Plugin 'neovimhaskell/haskell-vim'
-" Bundle 'gabrielelana/vim-markdown'
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" To install from command line: vim +PluginInstall +qall
-" End Vundle config
-"
-call vundle#end()
 set rtp+=~/.fzf
 map <C-p> :FZF<CR>
 set encoding=utf-8
 syntax on
 filetype plugin indent on
+" set omnifunc=syntaxcomplete#Complete
 set background=dark
 " let g:solarized_visibility = "high"
 " let g:solarized_contrast = "high"
@@ -98,6 +87,9 @@ set autoread
 
 " Write with sudo
 cmap w!! %!sudo tee > /dev/null %
+
+" Set login shell
+" set shell=zsh\ --interactive
 
 " vim markdown plugin
 let g:vim_markdown_folding_disabled=1
