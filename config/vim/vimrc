@@ -5,6 +5,20 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'junegunn/fzf'
+" Plug 'wikitopian/hardmode'
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim'
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"  let g:deoplete#enable_at_startup = 1
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"  Plug 'roxma/nvim-yarp'
+endif
+" Plug 'autozimu/LanguageClient-neovim', {'branch': 'next','do': 'bash install.sh',}
+" let g:deoplete#enable_at_startup = 1
 call plug#end()
 set nocompatible
 filetype off
@@ -109,6 +123,7 @@ endfunction
 
 " Vim Hard mode
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 " config for vim-markdown
 " disable spell-check
@@ -116,3 +131,10 @@ let g:markdown_enable_spell_checking = 0
 
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
+
+" set hidden
+" let g:LanguageClient_serverCommands = {'typescript': ['tcp://127.0.0.1:2089']}
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
