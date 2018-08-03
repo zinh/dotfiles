@@ -3,3 +3,12 @@ alias ggpush='git push origin $(git_current_branch)'
 alias ga='gia'
 alias gc!="gc --amend"
 alias gcmsg="gcm"
+
+# Ruby alias
+alias be='bundle exec'
+
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+# GPG config tty
+export GPG_TTY=$(tty)
