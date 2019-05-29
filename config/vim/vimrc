@@ -5,7 +5,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Plug 'wikitopian/hardmode'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
@@ -22,7 +23,6 @@ endif
 call plug#end()
 set nocompatible
 filetype off
-set rtp+=~/.fzf
 map <C-p> :FZF<CR>
 set encoding=utf-8
 syntax on
