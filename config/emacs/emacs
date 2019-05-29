@@ -1,0 +1,25 @@
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+; hide menu bar
+(menu-bar-mode -1)
+
+; solarized color theme
+(add-to-list 'custom-theme-load-path' "~/.emacs.d/emacs-color-theme-solarized")
+(load-theme 'solarized t)
+(set-terminal-parameter nil 'background-mode 'dark)
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
+; temporary directory
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs.d/saves/" t)))
+
+(custom-set-variables
+ '(package-selected-packages (quote (rjsx-mode neotree)))
+)
+(custom-set-faces)
+
+(global-set-key [f8] 'neotree-toggle)
