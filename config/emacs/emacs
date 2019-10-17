@@ -6,20 +6,47 @@
 (menu-bar-mode -1)
 
 ; solarized color theme
-(add-to-list 'custom-theme-load-path' "~/.emacs.d/emacs-color-theme-solarized")
+(add-to-list 'custom-theme-load-path' "~/.emacs.d/packages/emacs-color-theme-solarized")
 (load-theme 'solarized t)
 (set-terminal-parameter nil 'background-mode 'dark)
 
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
+(setq indent-tabs-mode nil)
+; (setq-default tab-width 2)
+(setq tab-width 2)
+(setq js-indent-level 2)
+(global-set-key (kbd "C-c p h") 'helm-projectile)
+;(projectile-global-mode)
+;(setq projectile-completion-system 'helm)
+;(helm-projectile-on)
 
-; temporary directory
-(setq auto-save-file-name-transforms
-  `((".*" "~/.emacs.d/saves/" t)))
+;(custom-set-variables
+; ;; custom-set-variables was added by Custom.
+; ;; If you edit it by hand, you could mess it up, so be careful.
+; ;; Your init file should contain only one such instance.
+; ;; If there is more than one, they won't work right.
+; '(package-selected-packages (quote (haskell-mode rjsx-mode neotree)))
+; )
 
+; (custom-set-faces
+;  ;; custom-set-faces was added by Custom.
+;  ;; If you edit it by hand, you could mess it up, so be careful.
+;  ;; Your init file should contain only one such instance.
+;  ;; If there is more than one, they won't work right.
+;  )
+; 
+; (global-set-key [f8] 'neotree-toggle)
+(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves/" t)))
+(setq backup-directory-alist `((".*" . "~/.emacs.d/saves/")))
 (custom-set-variables
- '(package-selected-packages (quote (rjsx-mode neotree)))
-)
-(custom-set-faces)
-
-(global-set-key [f8] 'neotree-toggle)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (web-mode helm helm-projectile)))
+ '(send-mail-function (quote mailclient-send-it)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
