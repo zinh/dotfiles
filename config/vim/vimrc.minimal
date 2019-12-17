@@ -1,0 +1,21 @@
+" Requirement: Vim 8+
+" git clone https://github.com/scrooloose/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+" git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/pack/vendor/start/ctrlp.vim
+set nocompatible
+set encoding=utf-8
+syntax on
+filetype plugin indent on
+
+"set background=dark
+"colorscheme solarized8
+"set t_Co=16
+
+" Nerdtree config
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Optional for easier moving between split windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
