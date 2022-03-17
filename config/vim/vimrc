@@ -161,3 +161,26 @@ endfunction
 
 autocmd FileType * call LC_maps()
 " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" for more information :help completeopt
+set completeopt=menuone,noinsert,noselect
+
+lua <<EOF
+local opts = { noremap=true, silent=true }
+local formattingOptions = { tabSize=2, insertSpaces=true }
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting({tabSize=2})<CR>', opts)
+end
+require('lspconfig')['tsserver'].setup{
+  on_attach = on_attach,
+  cmd = {"typescript-language-server", "--stdio", "--tsserver-path", "tsserver"},
+}
+EOF
+
