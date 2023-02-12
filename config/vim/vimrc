@@ -4,27 +4,16 @@ Plug 'scrooloose/nerdtree'
 Plug 'altercation/vim-colors-solarized'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-fugitive'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " Plug 'mxw/vim-jsx'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'neovim/nvim-lspconfig'
 " Plug 'wikitopian/hardmode'
 " Plug 'hashivim/vim-terraform'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'autozimu/LanguageClient-neovim', {'branch': 'next','do': 'bash install.sh',}
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"   let g:deoplete#enable_at_startup = 1
-"   let g:python3_host_prog = '/Users/vinh/.anyenv/envs/pyenv/versions/3.8.3/bin/python'
-" else
-"   Plug 'lifepillar/vim-mucomplete'
-"   "" specific config for mucomplete
-"   let g:mucomplete#enable_auto_at_startup = 1
-"   let g:mucomplete#completion_delay = 1
-"   set completeopt+=menuone
-"   set completeopt+=noinsert
-"   set shortmess+=c
+if has('nvim')
+  Plug 'neovim/nvim-lspconfig'
 endif
 call plug#end()
 set nocompatible
@@ -36,7 +25,7 @@ filetype plugin indent on
 
 " Auto complete
 set omnifunc=syntaxcomplete#Complete
-set completefunc=LanguageClient#complete
+" set completefunc=LanguageClient#complete
 
 set background=dark
 " let g:solarized_visibility = "high"
@@ -118,7 +107,7 @@ cmap w!! %!sudo tee > /dev/null %
 " set shell=zsh\ --interactive
 
 " vim markdown plugin
-let g:vim_markdown_folding_disabled=1
+" let g:vim_markdown_folding_disabled=1
 
 function! HasPaste()
   if &paste
@@ -139,31 +128,14 @@ endfunction
 
 " config for vim-markdown
 " disable spell-check
-let g:markdown_enable_spell_checking = 0
+" let g:markdown_enable_spell_checking = 0
 
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
-let g:LanguageClient_serverCommands = {
-    \ 'c': ['/Users/vinh/Programs/clangd_10.0.0/bin/clangd'],
-    \ 'cpp': ['/Users/vinh/Programs/clangd_10.0.0/bin/clangd'],
-    \ 'python': ['/Users/vinh/Workspace/Personal/python-language-server/bin/pyls'],
-    \ }
-" set hidden
-" let g:LanguageClient_serverCommands = {'typescript': ['tcp://127.0.0.1:2089']}
-
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> <leader>k :call LanguageClient#textDocument_hover()<cr>
-    nnoremap <buffer> <silent> <leader>d :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <leader>a :call LanguageClient#textDocument_codeAction()<CR>
-  endif
-endfunction
-
-autocmd FileType * call LC_maps()
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
 " nvim lsp config
+" for more information :help completeopt
+set completeopt=menuone,noinsert,noselect
 
 lua <<EOF
 local opts = { noremap=true, silent=true }
@@ -189,8 +161,19 @@ require('lspconfig')['clojure_lsp'].setup{
   on_attach = on_attach,
   cmd = {"/home/vinh/.bin/clojure-lsp"},
 }
---      require'lspconfig'.pylsp.setup{
---        on_attach = on_attach,
---        cmd = {"/home/vinh/Projects/py3.10/bin/pylsp"},
---      }
-EOF
+require'lspconfig'.pylsp.setup{
+  on_attach = on_attach,
+  cmd = {"/home/vinh/Projects/py3.10/bin/pylsp"},
+}
+require('lspconfig')['tsserver'].setup{
+  on_attach = on_attach,
+  cmd = {"~/tsserver/node_modules/.bin/typescript-language-server", "--stdio", "--tsserver-path", "/Users/vinh/Workspace/Personal/tsserver"},
+}
+require('lspconfig')['hls'].setup{
+  on_attach = on_attach,
+  cmd = {'~/haskell-language-server-macOS-9.0.2', '--lsp'},
+}
+require'lspconfig'.pylsp.setup{
+  on_attach = on_attach,
+  cmd = {"~/python-language-server/bin/pyls"}
+}
