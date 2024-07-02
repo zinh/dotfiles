@@ -138,18 +138,6 @@ hi Normal guibg=NONE ctermbg=NONE
 set completeopt=menuone,noinsert,noselect
 
 lua <<EOF
-local opts = { noremap=true, silent=true }
-local formattingOptions = { tabSize=2, insertSpaces=true }
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting({tabSize=2})<CR>', opts)
-end
 -- to config pylance
 -- download(last worked version): curl -OJL https://ms-python.gallery.vsassets.io/_apis/public/gallery/publisher/ms-python/extension/vscode-pylance/2023.10.21/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
 -- remove vscode check: sed -i "s/\(if(\!process\[[^] ]*\]\[[^] ]*\])return\!0x\)1/\10/" ./server.bundle.js
@@ -157,6 +145,7 @@ require('lspconfig')['pyright'].setup{
   on_attach = on_attach,
   cmd = {"node", "/home/vinh/Downloads/pylance/extension/dist/server.bundle.js", "--stdio"},
 }
+
 require('lspconfig')['clojure_lsp'].setup{
   on_attach = on_attach,
   cmd = {"/home/vinh/.bin/clojure-lsp"},
@@ -165,15 +154,74 @@ require'lspconfig'.pylsp.setup{
   on_attach = on_attach,
   cmd = {"/home/vinh/Projects/py3.10/bin/pylsp"},
 }
+-- To install tsserver: npm i typescript typescript-language-server
 require('lspconfig')['tsserver'].setup{
   on_attach = on_attach,
   cmd = {"~/tsserver/node_modules/.bin/typescript-language-server", "--stdio", "--tsserver-path", "/Users/vinh/Workspace/Personal/tsserver"},
 }
+
+-- to install vue language server
+-- npm i @vue/language-server
+require('lspconfig')['volar'].setup{
+on_attach = on_attach,
+cmd = {"/Users/vinh/.anyenv/envs/nodenv/versions/20.15.0/bin/node", "/Users/vinh/.Programs/vuels/node_modules/.bin/vue-language-server", "--stdio"},
+}
+
+-- to add typescript support to Vue component
+-- npm i @vue/typescript-plugin
+-- and update tsserver config:
+-- require('lspconfig')['tsserver'].setup{
+--   init_options = {
+--     plugins = {
+--       {
+--         name = "@vue/typescript-plugin",
+--         location = "/Users/vinh/.Programs/vuels/node_modules/@vue/typescript-plugin",
+--         languages = {"javascript", "typescript", "vue"},
+--       },
+--     },
+--   },
+--   filetypes = {
+--     "javascript",
+--     "typescript",
+--     "vue",
+--   },
+--   on_attach = on_attach,
+--   cmd = {"/Users/vinh/.anyenv/envs/nodenv/versions/20.15.0/bin/node", "/Users/vinh/.Programs/tsserver/node_modules/typescript-language-server/lib/cli.mjs", "--stdio"},
+-- }
+
+-- hls's version must matched Haskell version; otherwise, it won't work
 require('lspconfig')['hls'].setup{
   on_attach = on_attach,
   cmd = {'~/haskell-language-server-macOS-9.0.2', '--lsp'},
 }
-require'lspconfig'.pylsp.setup{
-  on_attach = on_attach,
-  cmd = {"~/python-language-server/bin/pyls"}
-}
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+  -- Buffer local mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local opts = { buffer = ev.buf }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+  -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+  -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+  -- vim.keymap.set('n', '<space>wl', function()
+  --  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  -- end, opts)
+  -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+  -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+  vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+  -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', '<leader>f', function()
+  vim.lsp.buf.format { async = true }
+  end, opts)
+  end,
+})
+EOF
