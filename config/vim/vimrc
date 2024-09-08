@@ -163,6 +163,11 @@ require('lspconfig')['tsserver'].setup{
 -- to install vue language server
 -- npm i @vue/language-server
 require('lspconfig')['volar'].setup{
+init_options = { -- in case we have tsserverlibrary.js not found error
+   typescript = {
+     tsdk = "/Users/vinh/Workspace/berry/vuels/node_modules/typescript/lib"
+     }
+   },
 on_attach = on_attach,
 cmd = {"/Users/vinh/.anyenv/envs/nodenv/versions/20.15.0/bin/node", "/Users/vinh/.Programs/vuels/node_modules/.bin/vue-language-server", "--stdio"},
 }
