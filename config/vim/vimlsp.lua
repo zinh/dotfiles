@@ -1,3 +1,4 @@
+-- Config for Vue LSP with Typescript support. Neovim 0.11+
 -- config follow instruction at:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/vue_ls.lua
 -- https://github.com/yioneko/vtsls
